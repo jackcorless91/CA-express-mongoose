@@ -3,10 +3,14 @@ const express = require("express")
 const mongoose = require("mongoose")
 
 const postRouter = require("./routes/postRoutes")
+const { getPosts } = require("./controllers/postControllers")
 
 const app = express()
 
-app.get("/", (req, res) => {
+app.use(express.json())
+
+app.get("/", async (req, res) => {
+    const posts = await getPosts()
     res.json({
         data: "Hello World!!"
     })
