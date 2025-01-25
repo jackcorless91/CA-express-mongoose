@@ -1,5 +1,5 @@
-const Post = require("../models/post")
 
+const Post = require("../models/post")
 
 async function getPosts() {
     const posts = await Post.find()
@@ -8,7 +8,7 @@ async function getPosts() {
 
 async function getPost(postId) {
     const post = await Post.findById(postId)
-    // const post = await Post.find({ _id: postId })[0], has error, use findbyid
+    // const post = await Post.find({ _id: postId })[0]
     return post
 }
 
@@ -19,7 +19,7 @@ async function createPost(post) {
 
 async function updatePost(postId, post) {
     const updatedPost = await Post.findByIdAndUpdate(postId, post, { new: true })
-    return updatePost
+    return updatedPost
 }
 
 async function deletePost(postId) {
@@ -27,11 +27,11 @@ async function deletePost(postId) {
     return deletedPost
 }
 
-// named exports, export multiple
+// named exports
 module.exports = {
     getPosts,
     getPost,
     createPost,
     updatePost,
-    deletedPost
+    deletePost
 }

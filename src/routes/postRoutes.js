@@ -5,14 +5,14 @@ const {
     getPost,
     createPost,
     updatePost,
-    deletedPost
- } = require("../controllers/postControllers")
+    deletePost
+} = require("../controllers/postControllers")
 
 const postRouter = express.Router()
 
 // GET - /posts
-postRouter.get("/", (req, res) => {
-    const posts = getPosts()
+postRouter.get("/", async (req, res) => {
+    const posts = await getPosts()
     res.json(posts)
 })
 
@@ -26,7 +26,7 @@ postRouter.get("/:postId", async (req, res) => {
     }
 })
 
-// Post -/posts
+// POST - /posts
 postRouter.post("/", async (req, res) => {
     const bodyData = {
         title: req.body.title,
